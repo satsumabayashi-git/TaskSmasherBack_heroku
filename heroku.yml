@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: java -jar build/libs/TaskSmasherBack-0.0.4-SNAPSHOT.jar
+  web: java -jar build/libs/TaskSmasherBack-0.0.4-SNAPSHOT.jar --server.port=${PORT}
