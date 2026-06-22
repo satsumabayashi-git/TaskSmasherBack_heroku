@@ -16,10 +16,10 @@
 # Jarファイルで起動
 FROM eclipse-temurin:21-jdk-alpine
 ENV FRONTEND_URL=http://localhost:5173/
-# ARG JAR_FILE=./build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
+ARG JAR_FILE=/build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
 WORKDIR /app
-# COPY ${JAR_FILE} ./jar
-COPY build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar ./jar
+COPY ${JAR_FILE} ./jar
+# COPY build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar ./jar
 ENTRYPOINT ["java","-jar","./jar"]
 
 # #ベースイメージ
