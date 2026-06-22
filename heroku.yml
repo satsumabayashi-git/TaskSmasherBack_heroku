@@ -1,5 +1,5 @@
 build:
   docker:
-    web: Dockerfile_back
+    web: Dockerfile
 run:
   web: java -jar build/libs/TaskSmasherBack-0.0.4-SNAPSHOT.jar
