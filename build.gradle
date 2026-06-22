@@ -1,0 +1,71 @@
+plugins {
+	id 'java'
+//	id 'war' //warファイル作成
+	id 'org.springframework.boot' version '3.5.14'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.4-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'	
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
+	
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-jose' // JWTサポート
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	
+	implementation'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	
+	
+	
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+//	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' //Jarには不要
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+	
+	testCompileOnly 'org.projectlombok:lombok'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+//bootWar {
+//    enabled = true                      // WAR出力を有効化
+//    archiveFileName = 'TaskSmasher.war' // 任意のファイル名
+//}
+
+//tasks.named("bootJar") {
+//	mainClass = 'com.example.TaskSmasher.TaskSmasherApplication.java'
+//}
