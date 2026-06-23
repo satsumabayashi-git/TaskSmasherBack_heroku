@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.session.web.http.CookieSerializer;
+import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -107,8 +109,6 @@ public class SecurityConfig {
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-		
-		
 		CorsConfiguration config = new CorsConfiguration();
 		
 		config.setAllowedOrigins(List.of(url));
@@ -120,5 +120,16 @@ public class SecurityConfig {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", config);
 		return source;
+	}
+	
+	@Bean
+	public CookieSerializer cookieSerializer() {
+		DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+//		serializer.setCookieName("JSESSIONID"); 
+//		serializer.setCookiePath("/"); 
+//		serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$"); 
+		serializer.setSameSite("null");
+//		setUseSecureCookie HttpServletRequest.isSecure(); //デフォルト設定でOK？
+		return serializer;
 	}
 }
