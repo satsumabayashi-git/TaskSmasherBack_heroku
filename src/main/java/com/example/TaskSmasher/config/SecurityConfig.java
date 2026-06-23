@@ -88,9 +88,9 @@ public class SecurityConfig {
 						.deleteCookies("JSESSIONID"))
 				
 				// REST API 用に CSRF 無効
-//				.csrf((csrf) -> csrf
-//		                .ignoringRequestMatchers("/authentication","/logout")
-//		            )
+				.csrf((csrf) -> csrf
+		                .ignoringRequestMatchers("/authentication", "/todos", "/logout")
+		            )
 				;
 				
 				//CSRFを有効化
