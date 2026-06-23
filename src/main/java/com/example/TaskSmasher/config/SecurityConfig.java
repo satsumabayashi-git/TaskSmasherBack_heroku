@@ -91,7 +91,7 @@ public class SecurityConfig {
 				
 				// REST API 用に CSRF 無効
 				.csrf((csrf) -> csrf
-		                .ignoringRequestMatchers("/authentication", "/todos", "/logout")
+		                .ignoringRequestMatchers("/authentication", "/logout")
 		            )
 				;
 				

@@ -40,7 +40,7 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 	
 	implementation 'org.springframework.session:spring-session-core:3.0.0'
-	implementation 'org.springframework.session:spring-session-jdbc:3.0.0'
+	// implementation 'org.springframework.session:spring-session-jdbc:3.0.0'
 	
 	
 	
