@@ -1,0 +1,76 @@
+version: "2.4"
+services:
+  db:
+    image: mysql:8.0 # 使用するMySQLのバージョン
+    container_name: Test_mysql8_container # コンテナ名
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass # ルートユーザーのパスワード
+      LANG: C.UTF-8 # 言語設定
+    volumes:
+      # ホストのinit.sqlをDocker側で実行(データが初めて作成される時のみ)
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      # データを永続化するボリュームをマウント
+      - mysql8_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    # networks:
+    #   - backend-network
+
+  backend:
+    # コンテナ実行時の環境変数の設定
+    # environment:
+    #   - FRONTEND_URL=http://localhost:5173/
+    #   - SAMPLE_ARG=hoge
+    # - DB_USER=admin
+    #   - DB_PASSWORD=${DB_PASS_FROM_HOST}
+    # env_file:
+    #   - ./common.env
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # container_name: TS_tomcat11_container
+    ports:
+      - "8085:8080" # 左：ホストマシンのポート　を　右：コンテナ内のポート　にマッピング
+    # jar,warでビルドするときはvolumesなし
+    # volumes:
+    #   - ./TaskSmasherBack:/app
+    # - ./TaskSmasherBack/.gradle:/home/gradle/.gradle # Gradle のキャッシュ共有（ビルド高速化）
+    # networks:
+    #   - frontend-network
+    #   - backend-network
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+    restart: "no" # 起動失敗時に再起動を抑止
+
+  # frontend:
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.web
+  #     # dockerfile: Dockerfile.frontend
+  #   ports:
+  #     # nginxで起動
+  #     - "5173:8081"
+  #     # - "5173:80"
+  #     # - "5173:5173"
+  #   networks:
+  #     - frontend-network
+  #   volumes:
+  #     - ./TaskSmasherFront:/app
+  #     - tasksmasher_node_modules:/app/node_modules
+  #   stdin_open: true
+  #   tty: true
+
+volumes:
+  mysql8_data: # データベースの永続化用ボリューム
+  # tasksmasher_node_modules:
+# networks:
+#   frontend-network:
+#     driver: bridge
+#     # external: true
+#   backend-network:
+#     driver: bridge
+#     # external: false
