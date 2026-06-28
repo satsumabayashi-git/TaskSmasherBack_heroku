@@ -14,7 +14,7 @@
 FROM eclipse-temurin:21-jdk-alpine
 # ENV FRONTEND_URL=http://localhost:5173/
 # ARG JAR_FILE=build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
-ARG JAR_FILE=TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
+ARG JAR_FILE=TaskSmasherBack_heroku-0.0.5-SNAPSHOT.jar
 WORKDIR /app
 COPY ${JAR_FILE} ./jar
 # COPY build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar ./jar
