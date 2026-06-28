@@ -5,7 +5,9 @@ import java.util.Map;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 //@RequiredArgsConstructor
 public class TestCode {
@@ -27,10 +29,19 @@ public class TestCode {
 //		System.out.println(authentication);
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		String json = objectMapper.writeValueAsString(Map.of("error", "メールアドレスまたはパスワードが正しくありません。"));
-		System.out.println(json);
+		String json = objectMapper.writeValueAsString(Map.of("error", "メールアドレスまたはパスワードが正しくありません。","Result", "error"));
+//		String jsonSaveError = objectMapper.writeValueAsString(Map.of("Result", "error"));
+		JsonNode root = objectMapper.readTree(json);
+        // ageを更新
+//        ((ObjectNode) root).put("age", 30);
+        // 新しいフィールド追加
+        ((ObjectNode) root).put("city", "Tokyo");
+        String jsonnew = objectMapper.writeValueAsString(root);
+        
+		System.out.println(jsonnew);
 //		response.setContentType("application/json");
 //        response.getWriter().write(json);
+		
 	}
 
 }

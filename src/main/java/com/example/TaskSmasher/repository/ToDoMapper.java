@@ -11,8 +11,12 @@ import com.example.TaskSmasher.entity.ToDo;
 public interface ToDoMapper {
 	List<ToDo> selectAll();
 	ToDo selectById(@Param("id") Integer id);
+	List<ToDo> selectIncomplete();
+	List<ToDo> selectComplete();
 	void insert(ToDo toDo);
 	void update(ToDo toDo);
 	void delete(@Param("id") Integer id);
+	void complete(@Param("id") Integer id);
+	void incomplete(@Param("id") Integer id);
 
 }

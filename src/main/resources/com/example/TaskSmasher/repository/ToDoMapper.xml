@@ -5,10 +5,16 @@
 	<select id="selectAll" resultType="com.example.TaskSmasher.entity.ToDo">
 		SELECT id, todo, detail, created_at as createdAt, updated_at as updatedAt FROM todos
 	</select>
-	<select id="selectById"
-		resultType="com.example.TaskSmasher.entity.ToDo">
+	<select id="selectById" resultType="com.example.TaskSmasher.entity.ToDo">
 		SELECT id, todo, detail, created_at as createdAt, updated_at as updatedAt FROM todos
 		WHERE id = #{id}
+	</select>
+	
+	<select id="selectIncomplete" resultType="com.example.TaskSmasher.entity.ToDo">
+		SELECT id, todo, detail, created_at as createdAt, updated_at as updatedAt FROM todos WHERE is_completed = false
+	</select>
+	<select id="selectComplete" resultType="com.example.TaskSmasher.entity.ToDo">
+		SELECT id, todo, detail, created_at as createdAt, updated_at as updatedAt FROM todos WHERE is_completed = true
 	</select>
 	
 <!--	ParameterType="com.example.TaskSmasher.entity.ToDo"は省略可-->
@@ -23,4 +29,12 @@
 	<delete id="delete">
 		DELETE FROM todos WHERE id = #{id}
 	</delete>
+	<update id="complete">
+		UPDATE todos SET is_completed = true 
+		WHERE id = #{id}
+	</update>
+	<update id="incomplete">
+		UPDATE todos SET is_completed = false 
+		WHERE id = #{id}
+	</update>
 </mapper>

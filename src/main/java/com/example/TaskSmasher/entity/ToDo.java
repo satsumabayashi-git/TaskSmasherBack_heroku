@@ -18,5 +18,6 @@ public class ToDo {
 	private LocalDateTime createdAt;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "Asia/Tokyo")
 	private LocalDateTime updatedAt;
+	private boolean isCompleted;
 
 }

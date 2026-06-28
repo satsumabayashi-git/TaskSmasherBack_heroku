@@ -13,9 +13,9 @@ public class CorsConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		// APIエンドポイントのパスパターン
-		registry.addMapping("/api/**")
+		registry.addMapping("/**")
 				// 許可するReactアプリのURL
-				.allowedOrigins("url")
+				.allowedOrigins(url)
 				// 許可するHTTPメソッド
 				.allowedMethods("GET", "POST", "PUT", "DELETE")
 				// 許可するヘッダー
