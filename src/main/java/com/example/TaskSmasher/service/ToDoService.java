@@ -8,10 +8,12 @@ public interface ToDoService {
 	
 	List<ToDo> findAllToDo();
 	ToDo findByIdToDo(Integer id);
+	List<ToDo> findIncompleteToDo();
+	List<ToDo> findCompleteToDo();
 	void insertToDo(ToDo toDo);
 	void updateToDo(ToDo toDo);
 	void deleteToDo(Integer id);
-	
-	String  findAllToDoIntoJson();
+	void completeToDo(Integer id);
+	void incompleteToDo(Integer id);
 
 }

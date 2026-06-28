@@ -14,7 +14,10 @@ CREATE TABLE todos (
     -- created_at（作成日）
     created_at TIMESTAMP,
     -- updated_at（更新日）
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP,
+    -- is_completed（完了済み/未完了）
+    is_completed BOOLEAN DEFAULT false
+    
     --mysqlでは標準でタイムゾーンなし
 	--postgreSQLの場合
 	---- created_at（作成日）

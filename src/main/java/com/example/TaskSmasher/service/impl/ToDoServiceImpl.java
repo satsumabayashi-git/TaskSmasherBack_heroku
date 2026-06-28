@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.TaskSmasher.entity.ToDo;
 import com.example.TaskSmasher.repository.ToDoMapper;
 import com.example.TaskSmasher.service.ToDoService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -20,19 +19,6 @@ public class ToDoServiceImpl implements ToDoService {
 	
 	private final ToDoMapper toDoMapper;
 	private final ObjectMapper objectMapper;
-	
-	@Override
-	public String findAllToDoIntoJson() {
-		try {
-			String jsonToDos = objectMapper.writeValueAsString(findAllToDo());
-			return jsonToDos;
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return "failed";
-		}
-	}
-	
-	
 
 	@Override
 	public List<ToDo> findAllToDo() {
@@ -42,6 +28,16 @@ public class ToDoServiceImpl implements ToDoService {
 	@Override
 	public ToDo findByIdToDo(Integer id) {
 		return toDoMapper.selectById(id);
+	}
+	
+	@Override
+	public List<ToDo> findIncompleteToDo() {
+		return toDoMapper.selectIncomplete();
+	}
+	
+	@Override
+	public List<ToDo> findCompleteToDo() {
+		return toDoMapper.selectComplete();
 	}
 
 	@Override
@@ -59,6 +55,14 @@ public class ToDoServiceImpl implements ToDoService {
 		toDoMapper.delete(id);
 	}
 	
+	@Override
+	public void completeToDo(Integer id) {
+		toDoMapper.complete(id);
+	}
 	
+	@Override
+	public void incompleteToDo(Integer id) {
+		toDoMapper.incomplete(id);
+	}
 
 }
