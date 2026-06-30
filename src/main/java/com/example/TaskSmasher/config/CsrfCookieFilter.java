@@ -31,7 +31,7 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
                cookie = new Cookie(CSRF_COOKIE_NAME, token);
                cookie.setPath(CSRF_COOKIE_PATH);
                response.addCookie(cookie);
-               response.addHeader("Set-Cookie", "SameSite=none");
+//               response.addHeader("Set-Cookie", "SameSite=none");
            }
        }
 
