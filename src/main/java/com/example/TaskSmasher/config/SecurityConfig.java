@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -44,8 +43,8 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-		CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
-		handler.setCsrfRequestAttributeName("_csrf");
+//		CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
+//		handler.setCsrfRequestAttributeName("_csrf");
 
 		http
 				// ★HTTPリクエストに対するセキュリティ設定
