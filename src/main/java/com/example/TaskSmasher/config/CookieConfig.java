@@ -1,9 +1,7 @@
 package com.example.TaskSmasher.config;
 
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class CookieConfig {
+//@Configuration
+//public class CookieConfig {
 
 //    @Bean
 //    public DefaultCookieSerializer cookieSerializer() {
@@ -14,4 +12,4 @@ public class CookieConfig {
 //        
 //        return serializer;
 //    }
-}
+//}
