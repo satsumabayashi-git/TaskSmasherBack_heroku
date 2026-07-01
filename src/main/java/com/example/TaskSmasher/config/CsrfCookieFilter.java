@@ -41,7 +41,7 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
         	   ResponseCookie responseCookie = ResponseCookie.from(CSRF_COOKIE_NAME, token)
         		        .secure(true)
 //        		        .httpOnly(true)
-        		        .path("CSRF_COOKIE_PATH")
+        		        .path(CSRF_COOKIE_PATH)
         		        .sameSite("None")
         		        .build();
         	   response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
