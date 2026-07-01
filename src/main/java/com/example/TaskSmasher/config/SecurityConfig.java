@@ -44,8 +44,8 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-//		CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
-//		handler.setCsrfRequestAttributeName("_csrf");
+		CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
+		handler.setCsrfRequestAttributeName("_csrf");
 
 		http
 				// ★HTTPリクエストに対するセキュリティ設定
