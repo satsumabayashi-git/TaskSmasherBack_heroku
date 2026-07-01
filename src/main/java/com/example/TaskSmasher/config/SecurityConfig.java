@@ -12,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -91,6 +93,8 @@ public class SecurityConfig {
 				// REST API 用に CSRF 無効
 				.csrf((csrf) -> csrf
 		                .ignoringRequestMatchers("/authentication", "/logout", "todos/save")
+		                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+		                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()) 
 //		                .csrfTokenRepository(CookieCsrfTokenRepository())
 		            )
 				
