@@ -30,12 +30,12 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
            final String token = csrf.getToken();
            Cookie cookie = WebUtils.getCookie(request, CSRF_COOKIE_NAME);
            if (cookie == null || token != null && !token.equals(cookie.getValue())) {
-               cookie = new Cookie(CSRF_COOKIE_NAME, token);
-               cookie.setPath(CSRF_COOKIE_PATH);
-//               cookie.setSameSite(Cookie.SameSite.NONE);
-               cookie.setSecure(true);
-               response.addCookie(cookie);
-               response.setHeader(CSRF_COOKIE_NAME, "SameSite=None");
+//               cookie = new Cookie(CSRF_COOKIE_NAME, token);
+//               cookie.setPath(CSRF_COOKIE_PATH);
+////               cookie.setSameSite(Cookie.SameSite.NONE);
+//               cookie.setSecure(true);
+//               response.addCookie(cookie);
+               response.setHeader(CSRF_COOKIE_NAME, "SameSite=none");
            }
        }
 
