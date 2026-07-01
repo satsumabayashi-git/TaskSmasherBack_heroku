@@ -8,6 +8,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+//import org.springframework.boot.web.server.Cookie;
+//import org.springframework.boot.web.server.Cookie.SameSite;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
@@ -30,8 +32,10 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
            if (cookie == null || token != null && !token.equals(cookie.getValue())) {
                cookie = new Cookie(CSRF_COOKIE_NAME, token);
                cookie.setPath(CSRF_COOKIE_PATH);
+//               cookie.setSameSite(Cookie.SameSite.NONE);
+               cookie.setSecure(true);
                response.addCookie(cookie);
-//               response.addHeader("Set-Cookie", "SameSite=none");
+               response.setHeader("CSRF_COOKIE_NAME", "SameSite=none");
            }
        }
 
