@@ -35,7 +35,7 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
 //               cookie.setSameSite(Cookie.SameSite.NONE);
                cookie.setSecure(true);
                response.addCookie(cookie);
-               response.setHeader("CSRF_COOKIE_NAME", "SameSite=none");
+               response.setHeader(CSRF_COOKIE_NAME, "SameSite=None");
            }
        }
 
