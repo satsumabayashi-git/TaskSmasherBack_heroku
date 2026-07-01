@@ -8,6 +8,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 //import org.springframework.boot.web.server.Cookie;
 //import org.springframework.boot.web.server.Cookie.SameSite;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -35,7 +37,14 @@ public class CsrfCookieFilter  extends OncePerRequestFilter{
 ////               cookie.setSameSite(Cookie.SameSite.NONE);
 //               cookie.setSecure(true);
 //               response.addCookie(cookie);
-               response.setHeader(CSRF_COOKIE_NAME, "SameSite=none");
+        	   
+        	   ResponseCookie responseCookie = ResponseCookie.from(CSRF_COOKIE_NAME, token)
+        		        .secure(true)
+//        		        .httpOnly(true)
+        		        .path("CSRF_COOKIE_PATH")
+        		        .sameSite("None")
+        		        .build();
+        	   response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
            }
        }
 
