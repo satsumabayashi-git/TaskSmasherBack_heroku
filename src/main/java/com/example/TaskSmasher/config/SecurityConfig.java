@@ -45,7 +45,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
 		CsrfTokenRequestAttributeHandler handler = new CsrfTokenRequestAttributeHandler();
-		handler.setCsrfRequestAttributeName("_csrf");
+		handler.setCsrfRequestAttributeName("_ctkn");
 
 		http
 				// ★HTTPリクエストに対するセキュリティ設定
