@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -89,12 +90,13 @@ public class SecurityConfig {
 						.deleteCookies("JSESSIONID"))
 				
 				// REST API 用に CSRF 無効
-				.csrf((csrf) -> csrf
-		                .ignoringRequestMatchers("/authentication", "/logout", "todos/save")
+				.csrf(AbstractHttpConfigurer::disable)
+//				.csrf((csrf) -> csrf
+//		                .ignoringRequestMatchers("/authentication", "/logout", "todos/save")
 //		                .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
 //		                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())	
 //		                .csrfTokenRequestHandler(new CsrfTokenRequestAttributeHandler()) 
-		            )
+//		            )
 				
 				.addFilterAfter(new CsrfCookieFilter(), CsrfFilter.class)
 				;
