@@ -16,7 +16,7 @@ public interface ToDoMapper {
 	void insert(ToDo toDo);
 	void update(ToDo toDo);
 	void delete(@Param("id") Integer id);
+	void deleteAll();
 	void complete(@Param("id") Integer id);
 	void incomplete(@Param("id") Integer id);
-
 }

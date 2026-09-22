@@ -60,12 +60,8 @@ public class ToDoController {
 				e.printStackTrace();
 				return "failed";
 			}
-//			model.addAttribute("todo", toDoService.findByIdToDo(id));
-//			return "todo/detail";
 			} else {
 				return "対象データがありません";
-//			attributes.addFlashAttribute("errorMessage", "対象データがありません");
-//			return "redirect:/todos";
 		}
 	}
 	
@@ -103,18 +99,15 @@ public class ToDoController {
 	        response.setContentType("application/json; charset=UTF-8");
 	        response.getWriter().print(jsonSaveError);
 	        System.out.println("生成されたJSON: " + jsonSaveError);
-//	        form.setIsNew(true);
 			return;
 		}
 		ToDo toDo = ToDoHelper.convertToDo(form);
 		toDoService.insertToDo(toDo);
-//		attributes.addFlashAttribute("message", "新しいToDoが作成されました");
 		String jsonSave = objectMapper.writeValueAsString(Map.of("postResult", "saved"));
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().print(jsonSave);
         System.out.println("生成されたJSON: " + jsonSave);
         return;
-//		return "redirect:/todos";
 	}
 	
 	@PostMapping("/update")
@@ -125,12 +118,10 @@ public class ToDoController {
 	        response.setContentType("application/json; charset=UTF-8");
 	        response.getWriter().print(jsonUpdateError);
 	        System.out.println("生成されたJSON: " + jsonUpdateError);
-//			form.setIsNew(false);
 			return ;
 		}
 		ToDo toDo = ToDoHelper.convertToDo(form);
 		toDoService.updateToDo(toDo);
-//		attributes.addFlashAttribute("message", "ToDoが更新されました");
 		String jsonUpdate = objectMapper.writeValueAsString(Map.of("postResult", "updated"));
         response.setContentType("application/json; charset=UTF-8");
         response.getWriter().print(jsonUpdate);
@@ -142,7 +133,6 @@ public class ToDoController {
 	@ResponseBody
 	public String delete(@PathVariable Integer id, RedirectAttributes attributes) {
 		toDoService.deleteToDo(id);
-//	    attributes.addFlashAttribute("message", "ToDoが削除されました");
 		String json;
 		try {
 			json = objectMapper.writeValueAsString(Map.of("deleteResult", "success"));
@@ -152,7 +142,22 @@ public class ToDoController {
 			e.printStackTrace();
 			return "failed";
 		}
-  }
+	}
+	
+	@PostMapping("/all-delete")
+	@ResponseBody
+	public String deleteAll( RedirectAttributes attributes) {
+		toDoService.deleteAllToDo();
+		String json;
+		try {
+			json = objectMapper.writeValueAsString(Map.of("allDeleteResult", "success"));
+			System.out.println("生成されたJSON: " + json);
+			return json;
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return "failed";
+		}
+	}
 	
 	@PostMapping("/complete/{id}")
 	@ResponseBody
@@ -167,7 +172,7 @@ public class ToDoController {
 			e.printStackTrace();
 			return "failed";
 		}
-  }
+	}
 	
 	@PostMapping("/incomplete/{id}")
 	@ResponseBody
@@ -175,7 +180,7 @@ public class ToDoController {
 		toDoService.incompleteToDo(id);
 		String json;
 		try {
-			json = objectMapper.writeValueAsString(Map.of("completeResult", "success"));
+			json = objectMapper.writeValueAsString(Map.of("incompleteResult", "success"));
 			System.out.println("生成されたJSON: " + json);
 			return json;
 		} catch (JsonProcessingException e) {
