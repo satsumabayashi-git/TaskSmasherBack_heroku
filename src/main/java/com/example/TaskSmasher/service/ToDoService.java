@@ -13,6 +13,7 @@ public interface ToDoService {
 	void insertToDo(ToDo toDo);
 	void updateToDo(ToDo toDo);
 	void deleteToDo(Integer id);
+	void deleteAllToDo();
 	void completeToDo(Integer id);
 	void incompleteToDo(Integer id);
 

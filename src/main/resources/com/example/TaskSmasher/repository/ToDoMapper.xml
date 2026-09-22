@@ -29,6 +29,9 @@
 	<delete id="delete">
 		DELETE FROM todos WHERE id = #{id}
 	</delete>
+	<delete id="deleteAll">
+		DELETE FROM todos WHERE is_completed = true
+	</delete>
 	<update id="complete">
 		UPDATE todos SET is_completed = true 
 		WHERE id = #{id}

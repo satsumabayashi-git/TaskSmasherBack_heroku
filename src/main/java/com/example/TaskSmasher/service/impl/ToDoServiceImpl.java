@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.TaskSmasher.entity.ToDo;
 import com.example.TaskSmasher.repository.ToDoMapper;
 import com.example.TaskSmasher.service.ToDoService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +17,6 @@ import lombok.RequiredArgsConstructor;
 public class ToDoServiceImpl implements ToDoService {
 	
 	private final ToDoMapper toDoMapper;
-	private final ObjectMapper objectMapper;
 
 	@Override
 	public List<ToDo> findAllToDo() {
@@ -56,6 +54,11 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 	
 	@Override
+	public void deleteAllToDo() {
+		toDoMapper.deleteAll();
+	}
+	
+	@Override
 	public void completeToDo(Integer id) {
 		toDoMapper.complete(id);
 	}
@@ -64,5 +67,4 @@ public class ToDoServiceImpl implements ToDoService {
 	public void incompleteToDo(Integer id) {
 		toDoMapper.incomplete(id);
 	}
-
 }
