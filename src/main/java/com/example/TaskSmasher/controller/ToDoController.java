@@ -49,7 +49,7 @@ public class ToDoController {
 	
 	@GetMapping("/{id}")
 	@ResponseBody
-	public String detail(@PathVariable Integer id, Model model, RedirectAttributes attributes) {
+	public String detail(@PathVariable("id") Integer id, Model model, RedirectAttributes attributes) {
 		ToDo ToDo = toDoService.findByIdToDo(id);
 		if (ToDo != null) {
 			try {
@@ -131,7 +131,7 @@ public class ToDoController {
 	
 	@PostMapping("/delete/{id}")
 	@ResponseBody
-	public String delete(@PathVariable Integer id, RedirectAttributes attributes) {
+	public String delete(@PathVariable("id") Integer id, RedirectAttributes attributes) {
 		toDoService.deleteToDo(id);
 		String json;
 		try {
@@ -161,7 +161,7 @@ public class ToDoController {
 	
 	@PostMapping("/complete/{id}")
 	@ResponseBody
-	public String complete(@PathVariable Integer id) {
+	public String complete(@PathVariable("id") Integer id) {
 		toDoService.completeToDo(id);
 		String json;
 		try {
@@ -176,7 +176,7 @@ public class ToDoController {
 	
 	@PostMapping("/incomplete/{id}")
 	@ResponseBody
-	public String incomplete(@PathVariable Integer id) {
+	public String incomplete(@PathVariable("id") Integer id) {
 		toDoService.incompleteToDo(id);
 		String json;
 		try {

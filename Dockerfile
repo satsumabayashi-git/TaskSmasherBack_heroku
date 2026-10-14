@@ -1,25 +1,25 @@
-# # spring bootで起動
-# FROM eclipse-temurin:21-jdk-alpine
-# WORKDIR /app
-# # ビルド関連ファイルを先にコピーして依存取得
-# COPY build.gradle settings.gradle gradlew ./
-# COPY gradle ./gradle
-# # 依存だけ先にダウンロードしてキャッシュを効かせる
-# RUN ./gradlew build --no-daemon || return 0
-# COPY . .
-# CMD ["./gradlew", "bootRun", "--no-daemon"]
-
-
-# Jarファイルで起動(本番)
+# spring bootで起動
 FROM eclipse-temurin:21-jdk-alpine
-# ENV FRONTEND_URL=http://localhost:5173/
-# ARG JAR_FILE=build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
-ARG JAR_FILE=TaskSmasherBack_heroku-0.0.5-SNAPSHOT.jar
 WORKDIR /app
-COPY ${JAR_FILE} ./jar
-# COPY build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar ./jar
-# EXPOSE 8080
-ENTRYPOINT ["java","-jar","./jar"]
+# ビルド関連ファイルを先にコピーして依存取得
+COPY build.gradle settings.gradle gradlew ./
+COPY gradle ./gradle
+# 依存だけ先にダウンロードしてキャッシュを効かせる
+RUN ./gradlew build --no-daemon || return 0
+COPY . .
+CMD ["./gradlew", "bootRun", "--no-daemon"]
+
+
+# # Jarファイルで起動(本番)
+# FROM eclipse-temurin:21-jdk-alpine
+# # ENV FRONTEND_URL=http://localhost:5173/
+# # ARG JAR_FILE=build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar
+# ARG JAR_FILE=TaskSmasherBack_heroku-0.0.5-SNAPSHOT.jar
+# WORKDIR /app
+# COPY ${JAR_FILE} ./jar
+# # COPY build/libs/TaskSmasherBack_heroku-0.0.4-SNAPSHOT.jar ./jar
+# # EXPOSE 8080
+# ENTRYPOINT ["java","-jar","./jar"]
 
 
 # warファイル+tomcatで起動
