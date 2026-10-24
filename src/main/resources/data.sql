@@ -10,10 +10,3 @@ VALUES
 INSERT INTO todos (todo, detail, created_at, updated_at) 
 VALUES 
 ('ジムに行く', '運動する', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-
--- 認証テーブルへのダミーデータの追加
--- password：adminpass
-INSERT INTO authentications (username, password, authority, displayname) VALUES ('admin', '$2a$10$NrLh/LWVH/JlEnz6Yi..5ea795NQ4nSRhOyNPF/yUxWEH4ZMqo5DO', 'ADMIN','管理太郎');
--- password：userpass
-INSERT INTO authentications (username, password, authority, displayname) VALUES ('user', '$2a$10$/jar9xXQ6lrnVjLvLGv5BepFkLnGIO49RrGx42p2i.1hQt1BZ/7E2', 'USER', '一般花子');
