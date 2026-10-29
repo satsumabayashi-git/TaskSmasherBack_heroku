@@ -6,5 +6,9 @@
 		resultType="com.example.TaskSmasher.entity.Authentication">
 		SELECT username, password, authority, displayname FROM authentications WHERE username = #{username}
 	</select>
+	<insert id="insert">
+		INSERT INTO authentications (username, password, authority, displayname) 
+		VALUES (#{username}, #{password}, #{authority},#{displayname});
+	</insert>
 
 </mapper>

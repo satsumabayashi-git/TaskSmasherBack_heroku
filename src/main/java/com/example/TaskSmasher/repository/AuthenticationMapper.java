@@ -7,5 +7,5 @@ import com.example.TaskSmasher.entity.Authentication;
 @Mapper
 public interface AuthenticationMapper {
 	Authentication selectByUsername(String username);
-
+	void insert(Authentication Authentication);
 }
