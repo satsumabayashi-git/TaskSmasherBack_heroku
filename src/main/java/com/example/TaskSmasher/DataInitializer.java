@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class DataInitializer implements CommandLineRunner {
 	private final AuthenticationMapper authenticationMapper;
 
-	@Value("${ADMIN_PASSWORD:}")
+	@Value("${admin.password}")
 	private String adminPassword;
 	
 	@Override
@@ -30,7 +30,7 @@ public class DataInitializer implements CommandLineRunner {
 			if(!adminPassword.equals("")) {
 				Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
 				authenticationMapper.insert(authentication);
-				System.out.println("初期ユーザーを追加しました");
+				System.out.println("初期ユーザー:" + adminPassword + "を追加しました");
 			}
 		} catch (Exception e) {
 			System.out.println("初期化処理でエラーが発生しました");
