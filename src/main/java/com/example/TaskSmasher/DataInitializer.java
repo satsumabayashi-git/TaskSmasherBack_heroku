@@ -28,13 +28,11 @@ public class DataInitializer implements CommandLineRunner {
 		try {
 			System.out.println("Spring Bootアプリケーションが起動しました");
 	        System.out.println("初期化処理を実行しています");
-//	        System.out.println(adminPassword);
-//	        System.out.println(adminPassword.equals(""));
 
 			if(!adminPassword.equals("")) {
 				Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
 				authenticationMapper.insert(authentication);
-				System.out.println("初期ユーザー:" + adminPassword + "を追加しました");
+				System.out.println("初期ユーザーを追加しました");
 			}
 		} catch (Exception e) {
 			System.out.println("初期化処理でエラーが発生しました");
