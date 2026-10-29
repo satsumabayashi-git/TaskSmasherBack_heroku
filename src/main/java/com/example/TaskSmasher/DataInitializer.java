@@ -26,12 +26,16 @@ public class DataInitializer implements CommandLineRunner {
 	        System.out.println("初期化処理を実行しています");
 //	        System.out.println(adminPassword);
 //	        System.out.println(adminPassword.equals(""));
+	        
+	        Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
+			authenticationMapper.insert(authentication);
+			System.out.println("初期ユーザー:" + adminPassword + "を追加しました");
 
-			if(!adminPassword.equals("")) {
-				Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
-				authenticationMapper.insert(authentication);
-				System.out.println("初期ユーザー:" + adminPassword + "を追加しました");
-			}
+//			if(!adminPassword.equals("")) {
+//				Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
+//				authenticationMapper.insert(authentication);
+//				System.out.println("初期ユーザー:" + adminPassword + "を追加しました");
+//			}
 		} catch (Exception e) {
 			System.out.println("初期化処理でエラーが発生しました");
 			e.printStackTrace();
