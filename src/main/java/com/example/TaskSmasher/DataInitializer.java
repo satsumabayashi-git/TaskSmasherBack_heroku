@@ -21,6 +21,9 @@ public class DataInitializer implements CommandLineRunner {
 	@Value("${admin.password}")
 	private String adminPassword;
 	
+	@Value("${user1.password}")
+	private String user1Password;
+	
 	@Override
 	public void run(String... args) {
 //		log.info("DataInitializer started");
@@ -30,8 +33,10 @@ public class DataInitializer implements CommandLineRunner {
 	        System.out.println("初期化処理を実行しています");
 
 			if(!adminPassword.equals("")) {
-				Authentication authentication = new Authentication("admin", adminPassword, Role.ADMIN, "displayname");
-				authenticationMapper.insert(authentication);
+				Authentication authentication1 = new Authentication("admin", adminPassword, Role.ADMIN, "displayname1");
+				authenticationMapper.insert(authentication1);
+				Authentication authentication2 = new Authentication("TestUser", user1Password, Role.ADMIN, "displayname2");
+				authenticationMapper.insert(authentication2);
 				System.out.println("初期ユーザーを追加しました");
 			}
 		} catch (Exception e) {
